@@ -1,0 +1,11 @@
+message PBClientMsg 
+{ 
+    required string accountid = 1;  // ID 
+    optional string proxy = 2;   //proxy
+}
+
+message PBServerMsg 
+{ 
+    optional string key = 1;  // key 
+    optional string proxy = 2;   //proxy
+}
