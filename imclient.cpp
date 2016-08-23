@@ -42,7 +42,7 @@ void IMClient::SendData()
         IMDataPack req_msg;
         req_msg.PackDataSend(m_MainUI,m_socket_fd);
         req_msg.GetRspData(m_MainUI,m_socket_fd);
-        close(m_socket_fd);
+        //close(m_socket_fd);
     }
 }
 

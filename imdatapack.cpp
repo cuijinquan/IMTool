@@ -19,11 +19,6 @@ void IMDataPack::PackDataSend(Ui::MainWindow *ui,int fd)
 
     QString QstrData = ui->Send_Edit->toPlainText();
     std::string strData = QstrData.toStdString();
-    PBClientMsg msg_pb;
-    msg_pb.set_accountid(strData);
-
-    strData.clear();
-    msg_pb.SerializeToString(&strData);
 
     char *buf = new char[sizeof(IMMessageHead)+strData.length()];
     head_data.length = strData.length();
@@ -32,6 +27,7 @@ void IMDataPack::PackDataSend(Ui::MainWindow *ui,int fd)
     memcpy(buf + sizeof(IMMessageHead),strData.c_str(),strData.length());
 
     send(fd,buf,sizeof(IMMessageHead)+strData.length(),0);
+    delete[] buf;
 }
 
 void IMDataPack::GetRspData(Ui::MainWindow *ui,int fd)
@@ -47,11 +43,10 @@ void IMDataPack::GetRspData(Ui::MainWindow *ui,int fd)
     memset(pBody,0,head_data.length);
     recv(fd,pBody,head_data.length,0);
 
-    PBClientMsg msg_pb;
-    msg_pb.ParseFromString(pBody);
+    QString QStrProxy = pBody;
 
-    QString QStrProxy = msg_pb.proxy().c_str();
     ui->Receive_Edit->setText(QStrProxy);
+    delete[] pBody;
 }
 
 void IMDataPack::ParseHead(char * begin,IMMessageHead &head_data)
