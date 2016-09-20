@@ -9,10 +9,10 @@
 class IMMessageHead
 {
 public:
-    IMMessageHead():msg_uid(0),length(0),msg_cmd(0),reserved(0){};
+    IMMessageHead():msg_uid(0),msg_cmd(0),length(0),reserved(0){};
     int msg_uid;
-    int length;
     int msg_cmd;
+    int length;
     int reserved;
 
     IMMessageHead& operator=(IMMessageHead other)
