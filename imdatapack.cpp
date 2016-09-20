@@ -5,17 +5,10 @@ void IMDataPack::PackDataSend(Ui::MainWindow *ui,int fd)
 {
     IMMessageHead head_data;
 
-    head_data.msg_id = ui->Msg_ID_Edit->toPlainText().toInt();
-    head_data.user_id = ui->User_ID_Edit->toPlainText().toInt();
+    head_data.msg_uid = ui->Msg_UID_Edit->toPlainText().toInt();
     head_data.msg_cmd = ui->Msg_CMD_Edit->toPlainText().toInt();
-    head_data.length = ui->Length_Edit->toPlainText().toInt();
-    head_data.from = ui->From_Edit->toPlainText().toInt();
-    head_data.to = ui->To_Edit->toPlainText().toInt();
-    head_data.cluster_id = ui->Cluster_Edit->toPlainText().toInt();
-    head_data.node_id = ui->Node_Edit->toPlainText().toInt();
-    head_data.wait_time = ui->Time_Edit->toPlainText().toInt();
-    head_data.flag = ui->Flag_Edit->toPlainText().toInt();
-    head_data.reserved = ui->Reserve_Edit->toPlainText().toInt();
+    head_data.length = ui->Msg_Length_Edit->toPlainText().toInt();
+    head_data.reserved = ui->Msg_Reserved_Edit->toPlainText().toInt();
 
     QString QstrData = ui->Send_Edit->toPlainText();
     std::string strData = QstrData.toStdString();
